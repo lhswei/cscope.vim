@@ -79,7 +79,11 @@ if exists('g:cscope_ignore_strict') && g:cscope_ignore_strict == 1
   let g:cscope_ignore_files = g:cscope_ignore_files.'\|\.xml$\|\.yml$\|\.ini$\|\.conf$\|\.css$\|\.htc$\|\.bat$\|\.sh$\|\.txt$\|\.log$\|\.dtd$\|\.xsd$'
 endif
 
-let s:cscope_vim_dir = substitute($HOME,'\\','/','g')."/.cscope.vim"
+if exists('g:cscope_usr_root_path')
+	let s:cscope_vim_dir= substitute(g:cscope_usr_root_path,'\\','/','g')."/.cscope.vim"
+elseif
+	let s:cscope_vim_dir = substitute($HOME,'\\','/','g')."/.cscope.vim"
+endif
 let s:index_file = s:cscope_vim_dir.'/index'
 
 function! s:ListFiles(dir)
